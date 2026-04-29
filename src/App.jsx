@@ -5,7 +5,7 @@ import PageTitle from './components/PageTitle/PageTitle';
 function App() {
   return (
     <>
-      <PageTitle title={"Поиск!"} />
+      <PageTitle title={"Поиск"} />
       <DescriptionItem descr={"Введите название фильма, сериала или мультфильма для поиска и добавления в избранное."} />
       <Button text={'Поиск'} />
     </>
