@@ -54,6 +54,7 @@ body {
   background-image: url('./assets/Background.svg');
   background-position: center;
   background-size: cover;
+  /* комметарий */
 }
 
 #root {
@@ -74,7 +75,7 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 57px;
   letter-spacing: -1.68px;
   margin: 32px 0;
   @media (max-width: 1024px) {
