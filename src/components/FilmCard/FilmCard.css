@@ -1,0 +1,54 @@
+.card__item {
+  /* position: relative; */
+  padding: 8px;
+  backdrop-filter: blur(80px);
+  background: rgba(32, 40, 62, 0.8);
+  border-radius: 12px;
+}
+
+.card__poster {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.card__img {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.card__content {
+  padding: 8px;
+}
+
+.card__rating {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  gap: 4px;
+  border-radius: 8px;
+  padding: 4px 8px;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.card__start {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card__favorite {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  color: #7b6ef6;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

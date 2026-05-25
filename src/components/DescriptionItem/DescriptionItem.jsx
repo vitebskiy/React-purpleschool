@@ -1,3 +1,5 @@
+import './DescriptionItem.css';
+
 function DescriptionItem({ descr }) {
   return <p className="description-item">{descr}</p>;
 }
