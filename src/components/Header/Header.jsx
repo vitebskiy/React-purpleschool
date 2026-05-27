@@ -1,17 +1,17 @@
-import './Header.css';
+import styles from './Header.module.css';
 
 import logoSvg from '../../assets/logo.svg';
 
 function Header() {
   return (
-   <div className="header">
+   <div className={styles['header']}>
     <img src={logoSvg} alt="Логотип" />
-    <ul className="header__list">
-      <li className="header__item">
-        <a href="" className="header__link">Поиск фильмов</a>
+    <ul className={styles["header__list"]}>
+      <li className={styles["header__item"]}>
+        <a href="" className={styles["header__link"]}>Поиск фильмов</a>
       </li>
-      <li className="header__item">
-        <a href="" className="header__link">Мои фильмы</a>
+      <li className={styles["header__item"]}>
+        <a href="" className={styles["header__link"]}>Мои фильмы</a>
       </li>
     </ul>
    </div>
