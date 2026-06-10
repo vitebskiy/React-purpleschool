@@ -1,12 +1,15 @@
-import './Search.css';
+import styles from './Search.module.css';
+import cn from 'classnames';
 
 function Search({ value, onChange, placeholder, icon }) {
   return (
-    <div className="input-block">
-      {icon && <img className="input-icon" src={icon} alt="" />}
+    <div className={styles['input-block']}>
+      {icon && <img className={styles['input-icon']} src={icon} alt="" />}
 
       <input
-        className={`search-input ${icon ? 'search-input-with-icon' : ''}`}
+        className={cn(styles['search-input'], {
+          [styles['search-input-with-icon']]: icon,
+        })}
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
@@ -15,6 +18,5 @@ function Search({ value, onChange, placeholder, icon }) {
     </div>
   );
 }
-
 
 export default Search;

@@ -1,4 +1,6 @@
 .description-item {
+  max-width: 588px;
+  margin-bottom: 24px;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
