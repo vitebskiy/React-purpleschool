@@ -29,6 +29,12 @@
   }
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --text: #9ca3af;
@@ -99,6 +105,7 @@ p {
 .row {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 code,

@@ -1,11 +1,13 @@
-import './Button.css';
+import { forwardRef } from 'react';
+import styles from './Button.module.css';
 
-function Button({ text, onClick }) {
+
+const Button = forwardRef(({ text, onClick, }, ref) => {
   return (
-    <button className='button' onClick={onClick}>
+    <button ref={ref} className={styles['button']} onClick={onClick}>
       {text}
     </button>
   );
-}
+})
 
 export default Button;

@@ -6,3 +6,10 @@
   background: #7b6ef6;
   cursor: pointer;
 }
+
+.button__profile {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #fff;
+}
