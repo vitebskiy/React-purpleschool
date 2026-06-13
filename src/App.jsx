@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Button from './components/Button/Button';
 import DescriptionItem from './components/DescriptionItem/DescriptionItem';
 import PageTitle from './components/PageTitle/PageTitle';
@@ -32,17 +32,28 @@ function App() {
   const [userName, setUserName] = useState('');
   const [currentProfile, setCurrentProfile] = useState(null);
 
+  useEffect(() => {
+    const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
+    const existing = profiles.find((p) => p.isLogined === true);
+
+    if (existing) {
+      setCurrentProfile(existing.name);
+    }
+  }, []);
+
   const handleLogin = () => {
     if (!userName.trim()) return;
-
     const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
     const existing = profiles.find((p) => p.name === userName.trim());
+
     console.log(profiles);
 
     if (!existing) {
       profiles.push({ name: userName.trim(), isLogined: true });
-      localStorage.setItem('profiles', JSON.stringify(profiles));
+    } else {
+      existing.isLogined = true;
     }
+    localStorage.setItem('profiles', JSON.stringify(profiles));
 
     setCurrentProfile(userName.trim());
     setUserName('');
