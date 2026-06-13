@@ -22,6 +22,14 @@
   padding: 8px;
 }
 
+.card__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  color: #ebeef5;
+}
+
 .card__rating {
   position: absolute;
   top: 8px;
@@ -37,6 +45,10 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #ffad49;
 }
 
 .card__favorite {

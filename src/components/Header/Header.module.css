@@ -1,13 +1,39 @@
 .header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  gap: 48px;
+}
+
+.header__link {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+  color: #a8aebf;
+	text-decoration: none;
+  gap: 8px;
+}
+
+.header__number {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
 	display: flex;
+  height: 24px;
+  padding: 7px;
 	align-items: center;
-	list-style: none;
-	padding: 0;
-	gap: 48px;
+	justify-content: center;
+	background-color: #7b6ef6;
+	border-radius: 100%;
 }

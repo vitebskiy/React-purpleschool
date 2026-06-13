@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Button from './components/Button/Button';
 import DescriptionItem from './components/DescriptionItem/DescriptionItem';
 import PageTitle from './components/PageTitle/PageTitle';
@@ -8,48 +8,79 @@ import FilmList from './components/FilmList/FilmList';
 import blackWidowImg from './assets/black-widow.jpg';
 import shangChiImg from './assets/shangChiImg.jpg';
 
-
 import searchIcon from './assets/search.svg';
 import Header from './components/Header/Header';
 
 function App() {
-
-const films = [
+  const films = [
     {
       id: 1,
       title: 'Black Widow',
       rating: '6.8',
-      img: blackWidowImg
+      img: blackWidowImg,
     },
     {
       id: 2,
       title: 'Shang Chi',
       rating: '7.9',
-      img: shangChiImg
-    }
+      img: shangChiImg,
+    },
   ];
 
   const [search, setSearch] = useState('');
+
+  const [userName, setUserName] = useState('');
+  const [currentProfile, setCurrentProfile] = useState(null);
+
+  const handleLogin = () => {
+    if (!userName.trim()) return;
+
+    
+    const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
+    const existing = profiles.find((p) => p.name === userName.trim());
+    console.log(profiles);
+
+    if (!existing) {
+      profiles.push({ name: userName.trim() });
+      localStorage.setItem('profiles', JSON.stringify(profiles));
+    }
+
+    setCurrentProfile(userName.trim());
+    setUserName('');
+  };
+
+  const onLogout = () => {
+    setCurrentProfile(null);
+  };
 
   function handleSearch() {
     console.log('Ищем:', search);
   }
 
+  const searchRef = useRef(null);
+
   return (
     <>
       <header>
-        <Header></Header>
+        <Header onLogout={onLogout} currentProfile={currentProfile}></Header>
       </header>
 
       <PageTitle title={'Поиск'} />
       <DescriptionItem descr={'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.'} />
 
       <div className="row">
-        <Search value={search} onChange={setSearch} placeholder="Введите название" icon={searchIcon}></Search>
+        <Search value={search} ref={searchRef} onChange={setSearch} placeholder="Введите название" icon={searchIcon}></Search>
         <Button onClick={handleSearch} text={'Искать'} />
       </div>
 
       <FilmList films={films} />
+
+      <br></br>
+
+      <h3>Вход</h3>
+      <Search value={userName} onChange={setUserName} placeholder="Введите имя"></Search>
+      <br></br>
+      <Button onClick={handleLogin} text={'Войти в профиль'} />
     </>
   );
 }
