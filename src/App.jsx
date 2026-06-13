@@ -35,13 +35,12 @@ function App() {
   const handleLogin = () => {
     if (!userName.trim()) return;
 
-    
     const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
     const existing = profiles.find((p) => p.name === userName.trim());
     console.log(profiles);
 
     if (!existing) {
-      profiles.push({ name: userName.trim() });
+      profiles.push({ name: userName.trim(), isLogined: true });
       localStorage.setItem('profiles', JSON.stringify(profiles));
     }
 
@@ -49,7 +48,13 @@ function App() {
     setUserName('');
   };
 
-  const onLogout = () => {
+  const onLogout = (e) => {
+    e.preventDefault();
+    const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
+    const existing = profiles.find((p) => p.name === currentProfile);
+    existing.isLogined = false;
+
+    localStorage.setItem('profiles', JSON.stringify(profiles));
     setCurrentProfile(null);
   };
 
@@ -58,6 +63,7 @@ function App() {
   }
 
   const searchRef = useRef(null);
+  const inputRef = useRef(null);
 
   return (
     <>
@@ -78,9 +84,9 @@ function App() {
       <br></br>
 
       <h3>Вход</h3>
-      <Search value={userName} onChange={setUserName} placeholder="Введите имя"></Search>
+      <Search ref={searchRef} value={userName} onChange={setUserName} placeholder="Введите имя"></Search>
       <br></br>
-      <Button onClick={handleLogin} text={'Войти в профиль'} />
+      <Button ref={inputRef} onClick={handleLogin} text={'Войти в профиль'} />
     </>
   );
 }

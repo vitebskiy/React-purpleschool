@@ -47,7 +47,7 @@ function Header({ currentProfile, onLogout }) {
         {currentProfile ? (
           <>
             <li className={styles['header__item']}>
-              <a href="" onClick={onLogout} className={styles['header__link']}>
+              <a href="#!" onClick={onLogout} className={styles['header__link']}>
                 {currentProfile ? 'Выйти' : 'Войти'}
               </a>
             </li>
