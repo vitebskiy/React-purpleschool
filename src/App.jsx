@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useContext } from 'react';
 import Button from './components/Button/Button';
 import DescriptionItem from './components/DescriptionItem/DescriptionItem';
 import PageTitle from './components/PageTitle/PageTitle';
@@ -9,9 +9,13 @@ import blackWidowImg from './assets/black-widow.jpg';
 import shangChiImg from './assets/shangChiImg.jpg';
 
 import searchIcon from './assets/search.svg';
+import { UserContext } from './context/UserContext';
+
 import Header from './components/Header/Header';
 
 function App() {
+  const { setCurrentProfile } = useContext(UserContext);
+
   const films = [
     {
       id: 1,
@@ -30,16 +34,6 @@ function App() {
   const [search, setSearch] = useState('');
 
   const [userName, setUserName] = useState('');
-  const [currentProfile, setCurrentProfile] = useState(null);
-
-  useEffect(() => {
-    const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
-    const existing = profiles.find((p) => p.isLogined === true);
-
-    if (existing) {
-      setCurrentProfile(existing.name);
-    }
-  }, []);
 
   const handleLogin = () => {
     if (!userName.trim()) return;
@@ -59,16 +53,6 @@ function App() {
     setUserName('');
   };
 
-  const onLogout = (e) => {
-    e.preventDefault();
-    const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
-    const existing = profiles.find((p) => p.name === currentProfile);
-    existing.isLogined = false;
-
-    localStorage.setItem('profiles', JSON.stringify(profiles));
-    setCurrentProfile(null);
-  };
-
   function handleSearch() {
     console.log('Ищем:', search);
   }
@@ -79,7 +63,7 @@ function App() {
   return (
     <>
       <header>
-        <Header onLogout={onLogout} currentProfile={currentProfile}></Header>
+        <Header />
       </header>
 
       <PageTitle title={'Поиск'} />

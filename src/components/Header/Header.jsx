@@ -1,8 +1,11 @@
 import styles from './Header.module.css';
-
 import logoSvg from '../../assets/logo.svg';
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
-function Header({ currentProfile, onLogout }) {
+function Header() {
+  const { currentProfile, onLogout } = useContext(UserContext);
+
   return (
     <div className={styles['header']}>
       <img src={logoSvg} alt="Логотип" />
