@@ -5,24 +5,27 @@ import { UserContext } from '../../context/UserContext';
 
 function Header() {
   const { currentProfile, onLogout } = useContext(UserContext);
+import { NavLink } from 'react-router-dom';
 
   return (
     <div className={styles['header']}>
-      <img src={logoSvg} alt="Логотип" />
+      <NavLink to={'/'}>
+        <img src={logoSvg} alt="Логотип" />
+      </NavLink>
       <ul className={styles['header__list']}>
         <li className={styles['header__item']}>
-          <a href="" className={styles['header__link']}>
+          <NavLink to={'/'} className={styles['header__link']}>
             Поиск фильмов
-          </a>
+          </NavLink>
         </li>
         <li className={styles['header__item']}>
-          <a href="" className={styles['header__link']}>
+          <NavLink to={'/favorites'} className={styles['header__link']}>
             Мои фильмы
             <span className={styles['header__number']}>2</span>
-          </a>
+          </NavLink>
         </li>
         <li className={styles['header__item']}>
-          <a href="" className={styles['header__link']}>
+          <NavLink to={'/login'} className={styles['header__link']}>
             {/* {currentProfile ? currentProfile : "Войти"}  */}
 
             {currentProfile ? (
@@ -44,7 +47,7 @@ function Header() {
                 </svg>
               </>
             )}
-          </a>
+          </NavLink>
         </li>
 
         {currentProfile ? (

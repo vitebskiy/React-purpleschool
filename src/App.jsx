@@ -11,8 +11,6 @@ import shangChiImg from './assets/shangChiImg.jpg';
 import searchIcon from './assets/search.svg';
 import { UserContext } from './context/UserContext';
 
-import Header from './components/Header/Header';
-
 function App() {
   const { setCurrentProfile } = useContext(UserContext);
 
@@ -62,10 +60,6 @@ function App() {
 
   return (
     <>
-      <header>
-        <Header />
-      </header>
-
       <PageTitle title={'Поиск'} />
       <DescriptionItem descr={'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.'} />
 
