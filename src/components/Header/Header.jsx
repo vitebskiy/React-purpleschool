@@ -2,10 +2,10 @@ import styles from './Header.module.css';
 import logoSvg from '../../assets/logo.svg';
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
+import { NavLink } from 'react-router-dom';
 
 function Header() {
   const { currentProfile, onLogout } = useContext(UserContext);
-import { NavLink } from 'react-router-dom';
 
   return (
     <div className={styles['header']}>
