@@ -1,7 +1,6 @@
-import React, { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-export interface CardProps extends Reac {
-  // Ваш код здесь
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
   children: ReactNode;
 }

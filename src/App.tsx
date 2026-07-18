@@ -4,17 +4,19 @@ import DescriptionItem from './components/DescriptionItem/DescriptionItem';
 import PageTitle from './components/PageTitle/PageTitle';
 import Search from './components/Search/Search';
 import FilmList from './components/FilmList/FilmList';
+import { Film } from './components/FilmList/FilmList.props';
 
 import blackWidowImg from './assets/black-widow.jpg';
 import shangChiImg from './assets/shangChiImg.jpg';
 
 import searchIcon from './assets/search.svg';
 import { UserContext } from './context/UserContext';
+import { Profile } from './context/UserContext.props';
 
 function App() {
   const { setCurrentProfile } = useContext(UserContext);
 
-  const films = [
+  const films: Film[] = [
     {
       id: 1,
       title: 'Black Widow',
@@ -35,7 +37,7 @@ function App() {
 
   const handleLogin = () => {
     if (!userName.trim()) return;
-    const profiles = JSON.parse(localStorage.getItem('profiles') || '[]');
+    const profiles: Profile[] = JSON.parse(localStorage.getItem('profiles') || '[]');
     const existing = profiles.find((p) => p.name === userName.trim());
 
     console.log(profiles);
@@ -55,8 +57,8 @@ function App() {
     console.log('Ищем:', search);
   }
 
-  const searchRef = useRef(null);
-  const inputRef = useRef(null);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
