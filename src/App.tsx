@@ -6,9 +6,6 @@ import Search from './components/Search/Search';
 import FilmList from './components/FilmList/FilmList';
 import { Film } from './components/FilmList/FilmList.props';
 
-import blackWidowImg from './assets/black-widow.jpg';
-import shangChiImg from './assets/shangChiImg.jpg';
-
 import searchIcon from './assets/search.svg';
 import { UserContext } from './context/UserContext';
 import { Profile } from './context/UserContext.props';

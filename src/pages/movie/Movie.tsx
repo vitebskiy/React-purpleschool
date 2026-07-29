@@ -1,6 +1,3 @@
-// import { useParams } from 'react-router-dom';
-// import { getMovieById } from '../../api/moviesApi';
-// import { useEffect } from 'react';
 import { MovieProps } from './Movie.props';
 import { useLoaderData } from 'react-router-dom';
 
