@@ -17,7 +17,6 @@ import { getMovies } from './api/moviesApi';
 function App() {
   const { setCurrentProfile } = useContext(UserContext);
 
-
   const [search, setSearch] = useState('');
   const [films, setFilms] = useState<Film[]>([]);
 
@@ -67,7 +66,7 @@ function App() {
         <Button onClick={handleSearch} text={'Искать'} />
       </div>
 
-      <FilmList films={films} />
+      {films.length === 0 ? <p>Ничего не найдено</p> : <FilmList films={films} />}
 
       <br></br>
 
