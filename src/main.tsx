@@ -9,12 +9,20 @@ import { Movie } from './pages/movie/Movie';
 import { Login } from './pages/login/Login';
 import { Favorites } from './pages/favorites/Favorites';
 import { getMovieById } from './api/moviesApi';
+import { RequireAuth } from './guards/RequireAuth';
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      { index: true, element: <App /> },
+      {
+        index: true,
+        element: (
+          <RequireAuth>
+            <App />
+          </RequireAuth>
+        ),
+      },
       {
         path: 'movie/:id',
         loader: ({ params }) => {
@@ -23,10 +31,21 @@ const router = createBrowserRouter([
           }
           return getMovieById(params.id);
         },
-        element: <Movie />,
+        element: (
+          <RequireAuth>
+            <Movie />
+          </RequireAuth>
+        ),
       },
       { path: 'login', element: <Login /> },
-      { path: 'favorites', element: <Favorites /> },
+      {
+        path: 'favorites',
+        element: (
+          <RequireAuth>
+            <Favorites />
+          </RequireAuth>
+        ),
+      },
     ],
   },
 ]);
