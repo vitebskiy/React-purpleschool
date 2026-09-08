@@ -8,6 +8,8 @@ import { Layout } from './Layout/Layout';
 import { Movie } from './pages/movie/Movie';
 import { Login } from './pages/login/Login';
 import { Favorites } from './pages/favorites/Favorites';
+import { Provider } from 'react-redux';
+import { store } from './components/store/store';
 
 const router = createBrowserRouter([
   {
@@ -23,8 +25,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider>
+    <Provider store={store} >
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </Provider>
   </StrictMode>,
 );

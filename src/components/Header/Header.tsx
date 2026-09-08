@@ -3,9 +3,12 @@ import logoSvg from '../../assets/logo.svg';
 import { useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 function Header() {
   const { currentProfile, onLogout } = useContext(UserContext);
+  const favoriteFilms = useSelector((s:RootState) => s.favorite.items.length)
 
   return (
     <div className={styles['header']}>
@@ -21,7 +24,7 @@ function Header() {
         <li className={styles['header__item']}>
           <NavLink to={'/favorites'} className={styles['header__link']}>
             Мои фильмы
-            <span className={styles['header__number']}>2</span>
+            <span className={styles['header__number']}>{favoriteFilms}</span>
           </NavLink>
         </li>
         <li className={styles['header__item']}>

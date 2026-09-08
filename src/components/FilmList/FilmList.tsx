@@ -8,10 +8,11 @@ function FilmList({ films }: FilmListProps) {
     <ul className={cn(styles['list-reset'], styles['film-list'])}>
       {films.map((film) => (
         <FilmCard
-          key={film.id}
-          img={film.img}
+          key={film.imdbID}
+          Poster={film.Poster}
           rating={film.rating}
-          title={film.title}
+          Title={film.Title}
+          imdbID={film.imdbID}
         />
       ))}
     </ul>

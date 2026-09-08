@@ -1,8 +1,8 @@
 export interface Film {
-  id: number;
-  title: string;
+  imdbID: string;
+  Title: string;
   rating: string;
-  img: string;
+  Poster: string;
 }
 
 export interface FilmListProps {

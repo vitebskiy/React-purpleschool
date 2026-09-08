@@ -4,34 +4,17 @@ import DescriptionItem from './components/DescriptionItem/DescriptionItem';
 import PageTitle from './components/PageTitle/PageTitle';
 import Search from './components/Search/Search';
 import FilmList from './components/FilmList/FilmList';
-import { Film } from './components/FilmList/FilmList.props';
-
-import blackWidowImg from './assets/black-widow.jpg';
-import shangChiImg from './assets/shangChiImg.jpg';
 
 import searchIcon from './assets/search.svg';
 import { UserContext } from './context/UserContext';
 import { Profile } from './context/UserContext.props';
+import { searchMovie } from './api/moviesApi';
 
 function App() {
   const { setCurrentProfile } = useContext(UserContext);
 
-  const films: Film[] = [
-    {
-      id: 1,
-      title: 'Black Widow',
-      rating: '6.8',
-      img: blackWidowImg,
-    },
-    {
-      id: 2,
-      title: 'Shang Chi',
-      rating: '7.9',
-      img: shangChiImg,
-    },
-  ];
-
   const [search, setSearch] = useState('');
+  const [foundFilms, setFoundFilms] = useState([]);
 
   const [userName, setUserName] = useState('');
 
@@ -53,8 +36,12 @@ function App() {
     setUserName('');
   };
 
-  function handleSearch() {
-    console.log('Ищем:', search);
+  async function handleSearch() {
+    const result = await searchMovie(search);
+
+    console.log(result);
+
+    setFoundFilms(result ?? []);
   }
 
   const searchRef = useRef<HTMLInputElement>(null);
@@ -63,21 +50,39 @@ function App() {
   return (
     <>
       <PageTitle title={'Поиск'} />
-      <DescriptionItem descr={'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.'} />
+      <DescriptionItem
+        descr={'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.'}
+      />
 
       <div className="row">
-        <Search value={search} ref={searchRef} onChange={setSearch} placeholder="Введите название" icon={searchIcon}></Search>
-        <Button onClick={handleSearch} text={'Искать'} />
+        <Search
+          value={search}
+          ref={searchRef}
+          onChange={setSearch}
+          placeholder="Введите название"
+          icon={searchIcon}></Search>
+        <Button
+          onClick={handleSearch}
+          text={'Искать'}
+        />
       </div>
 
-      <FilmList films={films} />
+      <FilmList films={foundFilms} />
 
       <br></br>
 
       <h3>Вход</h3>
-      <Search ref={searchRef} value={userName} onChange={setUserName} placeholder="Введите имя"></Search>
+      <Search
+        ref={searchRef}
+        value={userName}
+        onChange={setUserName}
+        placeholder="Введите имя"></Search>
       <br></br>
-      <Button ref={inputRef} onClick={handleLogin} text={'Войти в профиль'} />
+      <Button
+        ref={inputRef}
+        onClick={handleLogin}
+        text={'Войти в профиль'}
+      />
     </>
   );
 }

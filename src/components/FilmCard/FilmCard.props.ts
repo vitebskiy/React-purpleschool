@@ -1,5 +1,6 @@
 export interface FilmCardProps {
-  img: string;
+  Poster: string;
   rating: string;
-  title: string;
+  Title: string;
+  imdbID: string
 }
